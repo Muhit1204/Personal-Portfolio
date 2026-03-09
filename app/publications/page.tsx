@@ -1,9 +1,28 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { FileText, Calendar, Users, MapPin, ExternalLink } from 'lucide-react';
+import { FileText, Calendar, Users, MapPin, ExternalLink, GraduationCap } from 'lucide-react';
 
 export default function Publications() {
+  const theses = [
+    {
+      title: "Master's Thesis: Dynamic Data-Driven Optimization for Maritime Broadband Connectivity",
+      type: "Master's Thesis",
+      institution: "Lamar University",
+      date: "Expected 2026",
+      abstract: "This thesis explores the resilience of satellite networks in maritime environments, focusing on dynamic data-driven optimization to improve the reliability of LEO satellite communications under unpredictable weather and mobility conditions.",
+      keywords: ["LEO Satellites", "Maritime Communication", "Network Resilience", "Machine Learning"]
+    },
+    {
+      title: "Undergraduate Thesis: Analysis of Cybersecurity Threats in Cloud-Based IoT Networks",
+      type: "Undergraduate Thesis",
+      institution: "American International University-Bangladesh",
+      date: "2021",
+      abstract: "An in-depth analysis of vulnerabilities within cloud-integrated Internet of Things (IoT) networks, proposing a novel framework for detecting and mitigating distributed denial-of-service (DDoS) attacks using machine learning techniques.",
+      keywords: ["IoT", "Cloud Computing", "Cybersecurity", "DDoS", "Machine Learning"]
+    }
+  ];
+
   const publications = [
     {
       title: "Predictive Model for Starlink Maritime Performance Using Multi-Horizon RandomForest",
@@ -44,76 +63,138 @@ export default function Publications() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8"
+      className="space-y-16 max-w-5xl mx-auto pb-12"
     >
-      <motion.div variants={itemVariants} className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-100">Publications</h1>
-        <p className="text-slate-400">Research papers and conference proceedings.</p>
+      <motion.div variants={itemVariants} className="space-y-4 pt-8">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 font-mono">Research & Publications</h1>
+        <p className="text-xl text-slate-600 font-light leading-relaxed max-w-3xl">
+          A collection of my academic research, conference proceedings, and thesis work focused on satellite communications and network resilience.
+        </p>
       </motion.div>
 
-      <div className="space-y-8">
-        {publications.map((pub, index) => (
-          <motion.article variants={itemVariants} key={index} className="group bg-slate-900/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-slate-800 shadow-sm hover:bg-slate-800/80 hover:border-indigo-500/30 hover:shadow-[0_0_20px_rgba(99,102,241,0.1)] transition-all duration-300">
-            <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
-              <h2 className="text-xl md:text-2xl font-semibold text-slate-200 leading-tight group-hover:text-indigo-300 transition-colors">
-                {pub.title}
-              </h2>
-              {pub.link && (
-                <a 
-                  href={pub.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 text-indigo-400 text-sm font-medium rounded-xl border border-indigo-500/20 hover:bg-indigo-500/20 hover:text-indigo-300 hover:border-indigo-500/40 transition-all shrink-0"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span className="hidden sm:inline">View Paper</span>
-                </a>
-              )}
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-sm text-slate-400 mb-6">
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
-                <span className="font-medium text-slate-300">{pub.authors}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
-                <span className="italic">{pub.venue}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
-                <span>{pub.date}</span>
-              </div>
-              {pub.location && (
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
-                  <span>{pub.location}</span>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-2">Abstract</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  {pub.abstract}
-                </p>
+      {/* Theses Section */}
+      <motion.section variants={itemVariants} className="space-y-8">
+        <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
+          <GraduationCap className="w-8 h-8 text-blue-600" />
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900">Academic Theses</h2>
+        </div>
+        <div className="grid grid-cols-1 gap-8">
+          {theses.map((thesis, index) => (
+            <div key={index} className="group bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-4">
+                <h3 className="text-2xl font-bold text-slate-900 leading-tight group-hover:text-blue-700 transition-colors">
+                  {thesis.title}
+                </h3>
+                <span className="px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-bold rounded-full border border-blue-100 shrink-0 uppercase tracking-wider">
+                  {thesis.type}
+                </span>
               </div>
               
-              <div>
-                <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-2">Keywords</h3>
-                <div className="flex flex-wrap gap-2">
-                  {pub.keywords.map(keyword => (
-                    <span key={keyword} className="px-2.5 py-1 bg-slate-950 text-slate-400 text-xs font-medium rounded-md border border-slate-800 group-hover:border-indigo-500/30 group-hover:text-indigo-300 transition-colors">
-                      {keyword}
-                    </span>
-                  ))}
+              <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-sm text-slate-500 mb-6 font-medium">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                  <span>{thesis.institution}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                  <span>{thesis.date}</span>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">Abstract</h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    {thesis.abstract}
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">Keywords</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {thesis.keywords.map(keyword => (
+                      <span key={keyword} className="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-bold rounded-md border border-slate-200 group-hover:border-blue-200 group-hover:text-blue-700 transition-colors">
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </motion.article>
-        ))}
-      </div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Publications Section */}
+      <motion.section variants={itemVariants} className="space-y-8">
+        <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
+          <FileText className="w-8 h-8 text-indigo-600" />
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900">Published Papers</h2>
+        </div>
+        <div className="space-y-8">
+          {publications.map((pub, index) => (
+            <article key={index} className="group bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm hover:border-indigo-300 hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
+                <h3 className="text-2xl font-bold text-slate-900 leading-tight group-hover:text-indigo-700 transition-colors">
+                  {pub.title}
+                </h3>
+                {pub.link && (
+                  <a 
+                    href={pub.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 text-sm font-bold rounded-xl border border-indigo-100 hover:bg-indigo-100 hover:border-indigo-200 transition-all shrink-0 uppercase tracking-wider"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span className="hidden sm:inline">View Paper</span>
+                  </a>
+                )}
+              </div>
+              
+              <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-sm text-slate-500 mb-6 font-medium">
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-slate-400 group-hover:text-indigo-500 transition-colors" />
+                  <span className="text-slate-700">{pub.authors}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-slate-400 group-hover:text-indigo-500 transition-colors" />
+                  <span className="italic">{pub.venue}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-slate-400 group-hover:text-indigo-500 transition-colors" />
+                  <span>{pub.date}</span>
+                </div>
+                {pub.location && (
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-slate-400 group-hover:text-indigo-500 transition-colors" />
+                    <span>{pub.location}</span>
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">Abstract</h4>
+                  <p className="text-slate-600 leading-relaxed">
+                    {pub.abstract}
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">Keywords</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {pub.keywords.map(keyword => (
+                      <span key={keyword} className="px-3 py-1 bg-slate-50 text-slate-600 text-xs font-bold rounded-md border border-slate-200 group-hover:border-indigo-200 group-hover:text-indigo-700 transition-colors">
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </motion.section>
     </motion.div>
   );
 }

@@ -35,10 +35,10 @@ export default function CybersecurityPanel() {
   const [activeRisk, setActiveRisk] = useState(risks[0].id);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col md:flex-row">
+    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-sm">
       {/* Sidebar */}
-      <div className="w-full md:w-1/3 bg-slate-950/50 border-b md:border-b-0 md:border-r border-slate-800 p-4">
-        <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+      <div className="w-full md:w-1/3 bg-slate-50 border-b md:border-b-0 md:border-r border-slate-200 p-4">
+        <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4 flex items-center gap-2">
           <ShieldAlert className="w-4 h-4" />
           Threat Vectors
         </h3>
@@ -49,18 +49,18 @@ export default function CybersecurityPanel() {
               onClick={() => setActiveRisk(risk.id)}
               className={`w-full flex items-center justify-between p-3 rounded-xl text-left transition-all ${
                 activeRisk === risk.id
-                  ? 'bg-slate-800 border border-slate-700 shadow-sm'
-                  : 'hover:bg-slate-800/50 border border-transparent text-slate-400'
+                  ? 'bg-white border border-slate-200 shadow-sm'
+                  : 'hover:bg-white/50 border border-transparent text-slate-500'
               }`}
             >
               <div className="flex items-center gap-3">
                 {risk.icon}
-                <span className={`font-medium ${activeRisk === risk.id ? 'text-slate-200' : ''}`}>
+                <span className={`font-medium ${activeRisk === risk.id ? 'text-slate-900' : ''}`}>
                   {risk.title}
                 </span>
               </div>
               {activeRisk === risk.id && (
-                <ChevronRight className="w-4 h-4 text-slate-500" />
+                <ChevronRight className="w-4 h-4 text-slate-400" />
               )}
             </button>
           ))}
@@ -81,25 +81,25 @@ export default function CybersecurityPanel() {
                 className="absolute inset-0 p-6 flex flex-col"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-slate-950 rounded-lg border border-slate-800">
+                  <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
                     {risk.icon}
                   </div>
-                  <h4 className="text-xl font-semibold text-slate-100">{risk.title}</h4>
+                  <h4 className="text-xl font-semibold text-slate-900">{risk.title}</h4>
                 </div>
                 
-                <p className="text-slate-400 mb-6 leading-relaxed">
+                <p className="text-slate-600 mb-6 leading-relaxed">
                   {risk.description}
                 </p>
 
                 <div className="space-y-4 mt-auto">
-                  <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-4">
-                    <h5 className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-1">Impact</h5>
-                    <p className="text-sm text-slate-300">{risk.impact}</p>
+                  <div className="bg-rose-50 border border-rose-100 rounded-lg p-4">
+                    <h5 className="text-xs font-semibold text-rose-600 uppercase tracking-wider mb-1">Impact</h5>
+                    <p className="text-sm text-slate-700">{risk.impact}</p>
                   </div>
                   
-                  <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4">
-                    <h5 className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">Mitigation Strategy</h5>
-                    <p className="text-sm text-slate-300">{risk.mitigation}</p>
+                  <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-4">
+                    <h5 className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-1">Mitigation Strategy</h5>
+                    <p className="text-sm text-slate-700">{risk.mitigation}</p>
                   </div>
                 </div>
               </motion.div>

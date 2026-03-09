@@ -1,26 +1,10 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { BookOpen, Server, Database, ShieldCheck } from 'lucide-react';
+import { Server, Database, ShieldCheck } from 'lucide-react';
 
 export default function Projects() {
   const projects = [
-    {
-      title: "Master's Thesis: Performance Evaluation and Cybersecurity Analysis of Starlink Maritime Internet Systems",
-      icon: <ShieldCheck className="w-6 h-6 text-indigo-400 group-hover:text-indigo-300 transition-colors" />,
-      description: [
-        "Conducted field tests with Starlink Flat High-Performance Gen-3 equipment in varied environments (fair-weather, heavy rain, near-ocean), measuring throughput, latency, jitter, and delivery ratio.",
-        "Built NS-3 simulation models to replicate satellite links and identified deviations such as 15-minute real-world initialization delays compared to instant stability in simulation.",
-        "Documented throughput drops in heavy rain, and investigated cybersecurity vulnerabilities (spoofing, jamming, IoT exploitation), providing recommendations to strengthen port operations."
-      ]
-    },
-    {
-      title: "Bachelor's Thesis: Rigorous Study on Computational Geometry and Turing Test on Graph Layout Algorithm",
-      icon: <BookOpen className="w-6 h-6 text-emerald-400 group-hover:text-emerald-300 transition-colors" />,
-      description: [
-        "Explored algorithmic complexity and geometric optimization in graph layout models, evaluating performance using Turing test."
-      ]
-    },
     {
       title: "Banknote Authentication Using Machine Learning",
       icon: <Database className="w-6 h-6 text-amber-400 group-hover:text-amber-300 transition-colors" />,
@@ -72,29 +56,31 @@ export default function Projects() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8"
+      className="space-y-16 max-w-5xl mx-auto pb-12"
     >
-      <motion.div variants={itemVariants} className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-100">Projects & Thesis</h1>
-        <p className="text-slate-400">Academic research and technical projects.</p>
+      <motion.div variants={itemVariants} className="space-y-4 pt-8">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 font-mono">Projects</h1>
+        <p className="text-xl text-slate-600 font-light leading-relaxed max-w-3xl">
+          A showcase of my technical projects spanning machine learning, networking, and data analysis.
+        </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-8">
         {projects.map((project, index) => (
-          <motion.div variants={itemVariants} key={index} className="group bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-800 shadow-sm hover:bg-slate-800/80 hover:border-indigo-500/30 hover:shadow-[0_0_20px_rgba(99,102,241,0.1)] transition-all duration-300">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 group-hover:scale-110 group-hover:border-slate-700 transition-all duration-300">
+          <motion.div variants={itemVariants} key={index} className="group bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm hover:border-indigo-300 hover:shadow-md transition-all duration-300">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 group-hover:scale-110 group-hover:border-indigo-200 transition-all duration-300">
                 {project.icon}
               </div>
-              <h2 className="text-xl font-semibold text-slate-200 leading-tight pt-1 group-hover:text-indigo-300 transition-colors">
+              <h2 className="text-2xl font-bold text-slate-900 leading-tight pt-1 group-hover:text-indigo-600 transition-colors">
                 {project.title}
               </h2>
             </div>
-            <ul className="space-y-2 text-slate-400 text-sm pl-2">
+            <ul className="space-y-3 text-slate-600 pl-2">
               {project.description.map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-slate-600 mt-1 group-hover:text-indigo-500 transition-colors">—</span>
-                  <span>{item}</span>
+                <li key={i} className="flex items-start gap-3">
+                  <span className="text-slate-400 mt-1.5 group-hover:text-indigo-500 transition-colors">—</span>
+                  <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>

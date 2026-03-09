@@ -8,6 +8,7 @@ export default function Experience() {
     {
       title: "Graduate Research Assistant",
       company: "Lamar University, Center for Data Analytics and Cybersecurity",
+      link: "https://www.lamar.edu/center-data-analytics-cybersecurity/",
       location: "Beaumont, United States",
       date: "Oct 2024 – Present",
       description: [
@@ -21,6 +22,7 @@ export default function Experience() {
     {
       title: "Graduate Teaching Assistant",
       company: "Lamar University",
+      link: "https://www.lamar.edu/arts-sciences/computer-science/",
       location: "Beaumont, United States",
       date: "Sep 2025 – Present",
       description: [
@@ -33,6 +35,7 @@ export default function Experience() {
     {
       title: "IT Student Assistant",
       company: "Lamar University",
+      link: "https://www.lamar.edu/it-services-and-support/index.html",
       location: "Beaumont, United States",
       date: "Feb 2024 – Sep 2024",
       description: [
@@ -44,6 +47,7 @@ export default function Experience() {
     {
       title: "Web Developer",
       company: "RPSI Limited: Tech Team",
+      link: "https://www.linkedin.com/company/rpsiltd/?originalSubdomain=uk",
       location: "Dhaka, Bangladesh",
       date: "Sep 2021 – Jan 2023",
       description: [
@@ -72,44 +76,52 @@ export default function Experience() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-8"
+      className="space-y-16 max-w-5xl mx-auto pb-12"
     >
-      <motion.div variants={itemVariants} className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-100">Professional Experience</h1>
-        <p className="text-slate-400">My academic and industry work experience.</p>
+      <motion.div variants={itemVariants} className="space-y-4 pt-8">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 font-mono">Professional Experience</h1>
+        <p className="text-xl text-slate-600 font-light leading-relaxed max-w-3xl">
+          My academic and industry work experience.
+        </p>
       </motion.div>
 
       <div className="space-y-12 relative">
         {/* Glowing Timeline Line */}
-        <div className="hidden md:block absolute left-[20%] top-2 bottom-2 w-px bg-gradient-to-b from-indigo-500/50 via-emerald-500/20 to-transparent" />
+        <div className="hidden md:block absolute left-[20%] top-2 bottom-2 w-px bg-gradient-to-b from-indigo-200 via-emerald-200 to-transparent" />
 
         {experiences.map((exp, index) => (
           <motion.div variants={itemVariants} key={index} className="relative pl-8 md:pl-0">
             <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
               <div className="hidden md:block col-span-1 pt-1 text-right pr-8">
-                <p className="text-sm font-mono text-indigo-400">{exp.date}</p>
+                <p className="text-sm font-bold text-indigo-600 uppercase tracking-wider">{exp.date}</p>
               </div>
               <div className="col-span-4 relative group">
                 {/* Timeline dot */}
-                <div className="absolute -left-8 md:-left-[2.4rem] top-1.5 w-3 h-3 bg-indigo-500 rounded-full ring-4 ring-slate-950 group-hover:scale-150 group-hover:bg-emerald-400 transition-all duration-300 z-10" />
+                <div className="absolute -left-8 md:-left-[2.4rem] top-1.5 w-3 h-3 bg-indigo-500 rounded-full ring-4 ring-white group-hover:scale-150 group-hover:bg-emerald-500 transition-all duration-300 z-10" />
                 
-                <div className="bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-800 shadow-sm hover:bg-slate-800/80 hover:border-indigo-500/30 hover:shadow-[0_0_20px_rgba(99,102,241,0.1)] transition-all duration-300">
-                  <h3 className="text-xl font-semibold text-slate-200 mb-1 group-hover:text-indigo-300 transition-colors">{exp.title}</h3>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-slate-400 mb-4">
-                    <span className="font-medium flex items-center gap-1.5">
+                <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm hover:border-indigo-300 hover:shadow-md transition-all duration-300">
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">{exp.title}</h3>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-slate-500 mb-6">
+                    <span className="font-medium flex items-center gap-2 text-slate-700">
                       <Briefcase className="w-4 h-4" />
-                      {exp.company}
+                      {exp.link ? (
+                        <a href={exp.link} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 hover:underline transition-colors">
+                          {exp.company}
+                        </a>
+                      ) : (
+                        exp.company
+                      )}
                     </span>
-                    <span className="hidden sm:inline text-slate-700">•</span>
-                    <span className="text-sm">{exp.location}</span>
+                    <span className="hidden sm:inline text-slate-300">•</span>
+                    <span className="text-sm font-medium">{exp.location}</span>
                   </div>
-                  <p className="md:hidden text-sm font-mono text-indigo-400 mb-4">{exp.date}</p>
+                  <p className="md:hidden text-sm font-bold text-indigo-600 mb-4 uppercase tracking-wider">{exp.date}</p>
                   
-                  <ul className="space-y-2 text-slate-400 text-sm">
+                  <ul className="space-y-3 text-slate-600">
                     {exp.description.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-indigo-500 mt-1">•</span>
-                        <span>{item}</span>
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="text-indigo-500 mt-1.5">•</span>
+                        <span className="leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>

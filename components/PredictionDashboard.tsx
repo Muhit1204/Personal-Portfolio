@@ -42,28 +42,27 @@ export default function PredictionDashboard() {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setData(generateData(horizon, metric));
   }, [horizon, metric]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col gap-6">
+    <div className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col gap-6 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-slate-100 flex items-center gap-2">
-            <Activity className="w-5 h-5 text-indigo-400" />
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <Activity className="w-5 h-5 text-indigo-600" />
             Performance Prediction Model
           </h3>
-          <p className="text-sm text-slate-400">RandomForest Multi-Horizon Regression</p>
+          <p className="text-sm text-slate-500">RandomForest Multi-Horizon Regression</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
           {/* Metric Toggle */}
-          <div className="flex bg-slate-950 rounded-lg p-1 border border-slate-800">
+          <div className="flex bg-slate-50 rounded-lg p-1 border border-slate-200">
             <button
               onClick={() => setMetric('throughput')}
               className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                metric === 'throughput' ? 'bg-indigo-500/20 text-indigo-300' : 'text-slate-400 hover:text-slate-200'
+                metric === 'throughput' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               Throughput
@@ -71,7 +70,7 @@ export default function PredictionDashboard() {
             <button
               onClick={() => setMetric('latency')}
               className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                metric === 'latency' ? 'bg-indigo-500/20 text-indigo-300' : 'text-slate-400 hover:text-slate-200'
+                metric === 'latency' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               Latency
@@ -79,11 +78,11 @@ export default function PredictionDashboard() {
           </div>
 
           {/* Horizon Toggle */}
-          <div className="flex bg-slate-950 rounded-lg p-1 border border-slate-800">
+          <div className="flex bg-slate-50 rounded-lg p-1 border border-slate-200">
             <button
               onClick={() => setHorizon('15m')}
               className={`flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                horizon === '15m' ? 'bg-emerald-500/20 text-emerald-300' : 'text-slate-400 hover:text-slate-200'
+                horizon === '15m' ? 'bg-white text-emerald-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               <Clock className="w-3 h-3" /> 15 Min
@@ -91,7 +90,7 @@ export default function PredictionDashboard() {
             <button
               onClick={() => setHorizon('30m')}
               className={`flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                horizon === '30m' ? 'bg-emerald-500/20 text-emerald-300' : 'text-slate-400 hover:text-slate-200'
+                horizon === '30m' ? 'bg-white text-emerald-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               <Clock className="w-3 h-3" /> 30 Min
@@ -103,7 +102,7 @@ export default function PredictionDashboard() {
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
             <XAxis 
               dataKey="time" 
               stroke="#64748b" 
@@ -120,11 +119,11 @@ export default function PredictionDashboard() {
               unit={metric === 'throughput' ? ' Mbps' : ' ms'}
             />
             <Tooltip 
-              contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }}
-              itemStyle={{ fontSize: '12px' }}
-              labelStyle={{ color: '#94a3b8', marginBottom: '4px', fontSize: '12px' }}
+              contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '8px' }}
+              itemStyle={{ fontSize: '12px', color: '#0f172a' }}
+              labelStyle={{ color: '#64748b', marginBottom: '4px', fontSize: '12px' }}
             />
-            <Legend wrapperStyle={{ fontSize: '12px' }} />
+            <Legend wrapperStyle={{ fontSize: '12px', color: '#64748b' }} />
             <Line 
               type="monotone" 
               dataKey="actual" 
@@ -154,28 +153,28 @@ export default function PredictionDashboard() {
         </ResponsiveContainer>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-slate-800">
-        <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-slate-200">
+        <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
           <div className="text-xs text-slate-500 mb-1">Model MAE</div>
-          <div className="text-lg font-mono text-slate-200">
+          <div className="text-lg font-mono text-slate-900">
             {horizon === '15m' ? (metric === 'throughput' ? '19.1 Mbps' : '10.4 ms') : (metric === 'throughput' ? '24.6 Mbps' : '14.2 ms')}
           </div>
         </div>
-        <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+        <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
           <div className="text-xs text-slate-500 mb-1">Baseline MAE</div>
-          <div className="text-lg font-mono text-slate-400">
+          <div className="text-lg font-mono text-slate-500">
             {horizon === '15m' ? (metric === 'throughput' ? '27.7 Mbps' : '11.8 ms') : (metric === 'throughput' ? '26.0 Mbps' : '15.1 ms')}
           </div>
         </div>
-        <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+        <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
           <div className="text-xs text-slate-500 mb-1">Improvement</div>
-          <div className="text-lg font-mono text-emerald-400">
+          <div className="text-lg font-mono text-emerald-600">
             {horizon === '15m' ? '31%' : '5%'}
           </div>
         </div>
-        <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+        <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
           <div className="text-xs text-slate-500 mb-1">Horizon</div>
-          <div className="text-lg font-mono text-indigo-400">
+          <div className="text-lg font-mono text-indigo-600">
             {horizon === '15m' ? 'Short-term' : 'Mid-term'}
           </div>
         </div>

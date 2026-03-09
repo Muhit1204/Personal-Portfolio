@@ -41,7 +41,7 @@ export default function SatelliteOrbitDiagram() {
   }, [satellites.length]);
 
   return (
-    <div className="relative w-full h-64 bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex flex-col items-center justify-end">
+    <div className="relative w-full h-64 bg-slate-900 rounded-2xl border border-slate-200 overflow-hidden flex flex-col items-center justify-end shadow-sm">
       {/* Background Stars/Space */}
       <div className="absolute inset-0 opacity-20">
         {stars.map((star, i) => (
@@ -130,18 +130,18 @@ export default function SatelliteOrbitDiagram() {
       <div className="absolute bottom-0 w-full h-4 bg-gradient-to-r from-emerald-900/50 to-blue-900/50 border-t border-slate-800/50" />
 
       {/* Status Overlay */}
-      <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur border border-slate-800 rounded-lg px-3 py-2 text-xs font-mono">
+      <div className="absolute top-4 left-4 bg-white/80 backdrop-blur border border-slate-200 rounded-lg px-3 py-2 text-xs font-mono shadow-sm">
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-slate-400">Status:</span>
+          <span className="text-slate-500">Status:</span>
           {isHandoff ? (
-            <span className="text-red-400 flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" /> Handoff</span>
+            <span className="text-red-500 flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" /> Handoff</span>
           ) : (
-            <span className="text-emerald-400 flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400" /> Connected</span>
+            <span className="text-emerald-600 flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-600" /> Connected</span>
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-slate-400">Active Sat:</span>
-          <span className="text-slate-200">LEO-{satellites[activeSatellite].id + 1}</span>
+          <span className="text-slate-500">Active Sat:</span>
+          <span className="text-slate-900 font-medium">LEO-{satellites[activeSatellite].id + 1}</span>
         </div>
       </div>
     </div>
